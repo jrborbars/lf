@@ -1,0 +1,14 @@
+{
+	"require": {
+		"mikecao/flight"					: "1.*",
+		"twig/twig"							: "1.*",
+        "j4mie/paris"						: "1.*",
+        "monolog/monolog"					: "1.*",
+        "filp/whoops"						: "2.*",
+        "wixel/gump"                        : "dev-master",
+        "codeguy/upload"					: "*",
+        "plasticbrain/php-flash-messages"	: "1.*",
+        "volnix/csrf"		        		: "1.*",
+        "ircmaxell/random-lib"              : "1.*"
+	} 
+}

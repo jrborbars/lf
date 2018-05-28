@@ -1,0 +1,4 @@
+vendor/
+logs/
+models/db/
+templates/cache/

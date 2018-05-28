@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" lang="pt-BR">
+<head>
+	<!-- Válido para HTML 5 -->
+    <meta charset="utf-8" />
+    <meta name="description" content="Testes" />
+    <meta name="author" content="jrbsystems" />
+	<title>{% block title %}{% endblock %}</title>
+	<link href="{{level.0}}/static/css/normalize.css" type="text/css" rel="stylesheet" />
+	<link href="{{level.0}}/static/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="{{level.0}}/static/css/font-awesome.css" type="text/css" rel="stylesheet" />
+	<!-- <link href="{{level.0}}static/css/bootstrap_responsive.css" type="text/css" rel="stylesheet" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+	<style type="text/css" >
+		{% block css %}
+		{% endblock %}
+	</style>   
+</head>          
+<body>
+	<div id="geral" class="container-fluid">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">{{appname}}</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      	{% block menupri %}
+        {% endblock %}
+      </ul>
+  
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<div class="row">
+		<div>
+		{% for me in mens %}
+				{{ me | raw }}
+		{% endfor %}
+		</div>
+		<ol class="breadcrumb">
+            {% for key,value in breadcrumbs %}
+	  			<li><a href="{{key}}">{{value}}</a></li>
+            {% endfor %}
+		</ol>
+				{% block content %}
+				{% endblock content %}
+
+				{% block pagination %}
+				{% endblock pagination %}
+
+	</div>  <!-- row -->
+	 <hr/>
+		<div class="footer well">
+			<p>&copy; {{ "now"|date("Y") }} - jRB Systems.</p>
+		</div>
+</div>   <!-- geral -->
+	<!-- Lê os scripts necessários. -->
+	<script src="{{level.0}}/static/js/jquery.min.js" type="text/javascript"></script>
+	<script src="{{level.0}}/static/js/bootstrap3.min.js" type="text/javascript"></script>
+{% block js %}
+{% endblock %}
+</body>
+</html>

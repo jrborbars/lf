@@ -1,0 +1,86 @@
+{% extends "usuarios/baselog.html" %}
+
+{% block title %}..:: MyApp - login ::..{% endblock %}
+
+{% block css %}
+	<style type="text/css">
+	.panel-default {
+		opacity: 0.8;
+		margin-top:60px;
+	}
+	.form-group.last { margin-bottom:10px; }
+	</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-lock"></span> Login</div>
+                <div class="panel-body">
+                    		<div>
+                    		{% for me in mens %}
+                    				{{ me | raw }}
+                    		{% endfor %}
+                    		</div>
+                <form class="form-horizontal" action="login" method="post" role="form">
+	   				<input type="hidden" name="redir" value="{{redireciona}}" />
+			          {% for key,value in csrf %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}" />
+                      {% endfor  %}
+					
+					{% if flash.mens is not empty %}
+						<span class="help-block has-error">{{ flash.mens }}</span>
+					{% endif %}
+	                {% if ((flash.erro.senha) or (flash.erro.usuario) or (flash.erro.empresa)) is not empty %}
+		                  <span class="help-block">{{ flash.erro.senha }}<br/>{{ flash.erro.usuario }}<br/>{{ flash.erro.empresa }}</span>
+		            {% endif %}
+                    <div class="form-group">
+                        <label for="usuario" class="col-sm-3 control-label">
+                            Usuário</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nome do usuario" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="senha" class="col-sm-3 control-label">
+                            Senha</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required />
+                        </div>
+                    </div>
+ 
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"/>
+                                    Lembrar
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Login</button>
+                                 <button type="reset" class="btn btn-default btn-sm">
+                                Reset</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <span>Não está cadastrado? <a href="">Registrar</a></span>
+                    <br/>
+                    <span>Esqueceu a senha? <a href="">Recupere</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

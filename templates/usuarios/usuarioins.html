@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}..:: Myapp - insere ::..{% endblock %}
+
+{% block menupri %}
+   	{% for key,value in menu %}
+        {% if value == atualpag %}
+			<li class="active"><a href="{{ value }}">{{key}}</a></li>
+		{% else %}
+			<li><a href="{{ value }}">{{key}}</a></li>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="span12">
+      <form class="form-horizontal" action="ins" method="post">
+        <fieldset>
+        <!-- Form Name -->
+          <legend>Cadastra</legend>
+          <!-- Text input-->
+          {% for key,value in csrf %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}" />
+          {% endfor  %}
+            <div class="form-group {{ errortag }}">
+              <label class="col-md-4 control-label" for="nome">Nome</label>  
+              <div class="col-md-4">
+                <input type="text" id="nome" name="nome" placeholder="Nome completo do usuário" class="form-control input-md" value="{{flash.dados.nome}}" />
+              </div>
+            </div>
+            <div class="form-group {{ errortag }}">
+              <label class="col-md-4 control-label" for="email">Email</label>  
+              <div class="col-md-4">
+                <input type="text" id="email" name="email" placeholder="Email do usuário"  class="form-control input-md" value="{{flash.dados.email}}" />
+              </div>
+            </div>
+            <div class="form-group {{ errortag }}">
+              <label class="col-md-4 control-label" for="ativo">Ativo</label>  
+              <div class="col-md-4">
+<!--                <input type="hidden" name="ativo" class="form-control" value="off" /> -->
+                <input type="checkbox" name="ativo"  />
+              </div>
+            </div>
+            <div class="form-group {{ errortag }}">
+              <label class="col-md-4 control-label" for="senha">Senha</label>  
+              <div class="col-md-4">
+                <input type="password" id="senha" name="senha" placeholder="Senha do usuário" class="form-control input-md" />
+              </div>
+            </div>
+            <div class="form-group {{ errortag }}">
+              <label class="col-md-4 control-label" for="senha1">Repita a senha</label>  
+              <div class="col-md-4">
+                <input type="password" id="senha1" name="senha1" placeholder="Repita a senha do usuário" class="form-control input-md" />
+              </div>
+            </div>
+                    <!-- Button (Double) -->
+           <div class="form-group text-center">
+<!-- <input type="hidden" name="_METHOD" value="PUT"/> -->
+              <div class="form-group">
+                <div class="col-md-8">
+                  <button type="submit" class="btn btn-success">Gravar</button>
+                  <a class="btn btn-default" role="button" href="/admin/usuarios">Voltar</a>
+                </div>
+              </div>
+          </div>
+      </fieldset>
+    </form>
+</div>  <!-- span12 -->
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}..:: MyApp - deleta ::..{% endblock %}
+
+{% block menupri %}
+   	{% for key,value in menu %}
+        {% if value == atualpag %}
+			<li class="active"><a href="{{ value }}">{{key}}</a></li>
+		{% else %}
+			<li><a href="{{ value }}">{{key}}</a></li>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="span12">
+      <form class="form-horizontal" action="../del/{{dados.id}}" method="post">
+        <fieldset>
+        <!-- Form Name -->
+          <legend>Deleta usuário</legend>
+          <!-- Text input-->
+        <input type="hidden" name="id" value="{{dados.id}}" />
+        <input type="hidden" name="{{csrf_key}}" value="{{csrf_token}}">
+        <div class="alert alert-danger" role="alert"><strong>Tem certeza?</strong></div> 
+        <div class="searchable-container text-center">
+             <div class="items col-xs-12 col-sm-6 col-md-6 col-lg-6 clearfix">
+               <div class="info-block block-info clearfix  text-left">
+                    <div class="square-box pull-left">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </div>
+                    <h5>Company Name</h5>
+                    <h3>id: {{dados.id}}</h3>
+                    <p>{{dados.nome}}</p>
+                    <span>{{dados.email}}</span>
+                </div>
+            </div>
+            <div class="items col-xs-12 col-sm-6 col-md-6 col-lg-6 clearfix">
+               <div class="info-block block-info clearfix  text-left">
+                    <span>Ativo:
+                    {% if dados.ativo == 1 %}
+                        <div class="circulo_ok"></div>
+                    {% else %}
+                        <div class="circulo_nok"></div>
+                    {% endif %}
+                    </span>
+                    <p>Nome completo: {{dados.nome}}</p>
+                    <span>Cadastrado em: {{dados.created | date("d/m/Y") }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-danger">Deletar</button>
+                 <a class="btn btn-default" role="button" href="/admin/usuarios">Voltar</a>
+            </div>
+        </div>
+    </div>  <!-- /span -->
+  </div>  <!-- /form-horizontal -->
+ </form>
+</div>  <!-- /span10 -->
+{% endblock %}
+
+
+{% block css %}
+<style type="text/css">
+
+    .glyphicon-user {   font-size:5em }
+    .info-block {       border-right:5px solid #E6E6E6;
+                        margin-bottom:25px;}
+    .info-block .square-box {   width:100px;
+                                min-height:110px;
+                                margin-right:22px;
+                                text-align:center!important;
+                                background-color:#676767;
+                                padding:20px 0;}
+    .info-block.block-info {border-color:#E5A6A6}
+    .info-block.block-info .square-box { background-color:#E5A6A6;color:#FFF }
+</style>
+{% endblock %}
